@@ -1,0 +1,21 @@
+extends ./auth
+    
+block auth
+    div.col-sm-offset-3.col-sm-6
+        form.form-horizontal.form-signin(action="/users",method="POST",role="form")
+            
+            input(type='hidden', name='_csrf', value="#{csrf_token}")
+
+            input#email.form-control.form-btm(type="text",name="email",placeholder="Email")
+
+            input#name.form-control.form-btm(type="text",name="name",placeholder="Name")
+
+            input#username.form-control.form-btm(type="text",name="username",placeholder="Username")
+
+            input#password.form-control.form-btm(type="password",name="password",placeholder="Password")
+
+            br
+            .text-center
+                button.btn.btn-primary.btn-block(type="submit") 注册
+                br
+                a.show-login(href="/login") 登录

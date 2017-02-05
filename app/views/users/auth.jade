@@ -1,0 +1,30 @@
+extends ../layouts/default
+
+block main 
+    center 
+        h1= title
+
+block content
+    .text-center
+        a(href="/auth/facebook")
+            i.fa.fa-facebook.fa-3x.fa-border
+        | &nbsp;&nbsp;
+        a(href="/auth/github")
+            i.fa.fa-github.fa-3x.fa-border
+        | &nbsp;&nbsp;
+        a(href="/auth/google")
+            i.fa.fa-google.fa-3x.fa-border
+        | &nbsp;&nbsp;
+        a(href="/auth/qq")
+            i.fa.fa-qq.fa-3x.fa-border
+        | &nbsp;&nbsp;
+        a(href="/auth/loginByWeixin")
+            i.fa.fa-weixin.fa-3x.fa-border
+    .text-center
+    .text-center
+        br
+        h2 OR
+    .login
+
+    block auth
+        
