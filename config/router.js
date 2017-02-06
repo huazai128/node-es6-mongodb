@@ -1,6 +1,7 @@
 const users = require("../app/controllers/user");
 const articles = require("../app/controllers/articles");
 const comments = require("../app/controllers/comments");
+const tags = require("./app/controllers/tags");
 
 const auth = require("./middlewares/index");
 
@@ -82,11 +83,17 @@ module.exports = function(app,passport){
 
     //评论加载
     app.param("commentId",comments.load);
-    //POST添加评论
-    app.post("/articles/:id/comments",comments.create);
     //GET添加评论
-    app.get("/articles/:id/comments",comments.create);
-    
+    app.get("/articles/:id/comments",auth.requiresLogin,comments.create);
+     //POST添加评论
+    app.post("/articles/:id/comments",auth.requiresLogin,comments.create);  // 
+    //删除评论
+
+
+    //tag routes
+    app.get("/tags/:tag",tags.index)
+
+
     //错误处理
     app.use(function(err,req,res,next){
         if(err.message) return next();

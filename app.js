@@ -8,7 +8,7 @@ const join = require("path").join;
 const mongoose = require("mongoose");
 const passport = require("passport");     //身份验证策略；
 const config = require("./config");
-mongoose.Promise = require("bluebird");   
+mongoose.Promise = require("bluebird");
 
 const models = join(__dirname,"app/models")
 const port = process.env.PORT || 3000;

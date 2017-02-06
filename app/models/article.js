@@ -14,10 +14,10 @@ const ArticleSchema = new Schema({
     title:{type:String,default:"",trim:true},
     body:{type:String,default:"",trim:true},
     user:{type:Schema.ObjectId,ref:"User"},
-    comments:[{  //评论
-        body:{type:String,default:""}, //评论的内容
-        user:{type:Schema.ObjectId,ref:"User"}, //评论的用户
-        createdAt:{type:Date,default:Date.now} //评论时间
+    comments:[{
+        body: { type : String, default : '' },
+        user: { type : Schema.ObjectId, ref : 'User' },
+        createdAt: { type : Date, default : Date.now }
     }],
     tags:{type:[],get:getTags,set:setTags},  //标签，数组类型
     image:{ //图片
@@ -65,20 +65,23 @@ ArticleSchema.methods = {
         
     },
     //添加评论
-    addComment:function(user,comment){
-       this.comments.push({
-        body: comment.body,
-        user: user._id
+    addComment: function (user, comment) {
+        //console.log(comment);
+        console.log(typeof this.comments === "array");//constructor
+        //这个不是数组，怎么办
+        this.comments.push({
+            body: comment.body,
+            user: user._id
         });
         if (!this.user.email) this.user.email = 'email@product.com';
         notify.comment({
-        article: this,
-        currentUser: user,
-        comment: comment.body
+            article: this,
+            currentUser: user,
+            comment: comment.body
         });
 
         return this.save();
-    },
+  },
     /**
      * 删除评论,根据评论ID删除
      */
